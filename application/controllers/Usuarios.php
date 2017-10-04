@@ -496,5 +496,19 @@
 			$msg = $this->UsuariosModel->mostrarTrabajosSinRealizar();
 			echo $msg;
 		}
+//Funcion Notificar Recarga Gratis general
+ public function notificarRecargaGeneral(){
+		        $mensaje = "";
+			$msg = $this->UsuariosModel->notificarRecargaGeneral();
+			echo $msg;
+		}
+//Funcion Notificar dinero regresado
+  public function notificarDineroRegresado($to){
+			$tokens = array();
+			array_push($tokens, $to);
+			$test = $this->onesignal->sendMessageToUsers("Hola tu dinero lo tienes en tokens por la tarea errada", $tokens);
+			var_dump($test);
+			//return true;
+		}
 
 	}
