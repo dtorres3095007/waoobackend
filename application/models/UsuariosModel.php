@@ -653,5 +653,25 @@
       }
       return "Notificacion Enviadas";
 		}
+    public function notificarRecargaGeneral(){
+      $mensaje = '';
+      $this->db
+      ->select("u.id,u.nombres, u.token",false)
+      ->from("usuarios u")
+      ->where("u.tipo","1");
+      $res = $this->db->get();
+      if($res->num_rows()>0){
+        $cont1 = 0;
+        foreach($res->result() as $row){
+		
+    	    $tokens = array();
+			array_push($tokens, $row->token);
+			$test = $this->onesignal->sendMessageToUsers("Hola Tienes Una recarga Gratis en WAOO", $tokens);
+			var_dump($test);
+         
+        }
+      }
+      return "Notificacion Enviadas";
+		}
 
   }
